@@ -1,40 +1,45 @@
 .gameback {
-    background-color: black; 
+    background-color: black;
 }
 
 #question {
-    color: white; 
-    position: absolute; 
-    top: 69%; 
+    color: black;
+    position: absolute;
+    top: 69%;
     left: 35%;
     font-family: 'Source Code Pro', monospace;
 }
 
 #play {
-    background-color: black; 
-    outline: 0 none; 
-    border: 0 none; 
-    border-color: black; 
-    box-shadow: black; 
+    background-color: black;
+    outline: 0 none;
+    border: 0 none;
+    border-color: black;
+    box-shadow: black;
     color: white;
-    position: absolute; 
-    top: 76%; 
-    left: 35%; 
+    position: absolute;
+    top: 76%;
+    left: 35%;
     font-family: 'Source Code Pro', monospace;
 }
 
 #no {
-    color: white; 
+    color: white;
     position: absolute;
     top: 78%;
     left: 35%;
     font-family: 'Source Code Pro', monospace;
 }
 
+#gameback{
+  background-color: #f9f2ec;
+
+}
+
 .source {
-    font-family: 'Source Code Pro', monospace;
-    color: white; 
-    position: absolute; 
-    top: 50%; 
-    left: 40%; 
+    font-family: 'Righteous', cursive;
+    font-size: 50px;
+    color: #336600;
+    text-align: center;
+    margin-top: 10%;
 }
