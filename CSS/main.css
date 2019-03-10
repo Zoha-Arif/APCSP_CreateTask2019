@@ -12,7 +12,7 @@
 #question {
     color: white;
     position: absolute;
-    top: 59%;
+    top: 69%;
     left: 35%;
     font-family: 'Source Code Pro', monospace;
 }
@@ -25,7 +25,7 @@
     box-shadow: black;
     color: white;
     position: absolute;
-    top: 66%;
+    top: 76%;
     left: 35%;
     font-family: 'Source Code Pro', monospace;
 }
@@ -33,7 +33,7 @@
 #no {
     color: white;
     position: absolute;
-    top: 68%;
+    top: 78%;
     left: 35%;
     font-family: 'Source Code Pro', monospace;
 }
