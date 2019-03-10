@@ -50,3 +50,21 @@
     text-align: center;
     margin-top: 10%;
 }
+
+#bar {
+    color: white; 
+    font-family: 'Righteous', cursive;
+    background-color: #151414; 
+    list-style-type: none;
+    margin: 0px; 
+    padding: 0px; 
+}
+
+li {
+    display: inline; 
+    /* the original display for li elements is block */
+}
+
+.hiddenbar {
+    color:#151414; 
+}
