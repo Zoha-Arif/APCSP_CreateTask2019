@@ -15,10 +15,10 @@ $(document).ready(function(){ //when document is ready, function will be execute
     $(document).keypress(function(key){
         if (key.which == 13){
             var input = $('#play').val();
-            if (input == "yes" || input == "y"){
+            if (input == "yes" || input == "y" || input == "Yes" || input == "YES" || input == "yEs" || input == "yeS"){
                 window.location('game.html');
             }
-            else if (input == "no" || input == "n"){
+            else if (input == "no" || input == "n" || input == "NO" || input == "No" || input == "nO"){
                 var i = 0;
                 var txt = "Aw, you're missing out on an adventure! "; /* The text */
                 var speed = 50; /* The speed/duration of the effect in milliseconds */
