@@ -1,7 +1,7 @@
-var countdown_min = 10; 
-var countdown_second = 30; 
+// Code for the Timer: 
+var countdown_min = 10; // Set starting number of minutes here. 
+var countdown_second = 30; //Set starting number of seconds here.
 
-// Code for the Timer. 
 var total = (countdown_min * 60) + countdown_second; 
 var minutes; 
 var seconds; 
@@ -11,8 +11,12 @@ var x = setInterval(function() {
     minutes = Math.floor(minutes); 
     seconds = total - (minutes * 60); 
   document.getElementById("timer").innerHTML = minutes + "m " + seconds + "s ";
-  if (distance < 0) {
+  if (total < 0) {
     clearInterval(x);
     document.getElementById("timer").innerHTML = "EXPIRED";
+    var score =  document.getElementById("score").innerHTML; 
+    var moves = document.getElementById("moves").innerHTML; 
+    window.alert(`Uh oh! It seems that your time has run out! Your final score was ${score}. You made a total of ${moves} moves.`); 
+    //Add some more code for when the timer runs out to end the game. 
   }
 }, 1000);
