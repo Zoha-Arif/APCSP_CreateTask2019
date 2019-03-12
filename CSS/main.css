@@ -6,7 +6,7 @@
     /*text-align: center;*/
     position: absolute;
     left: 23%;
-    top: 18%;   
+    top: 18%;
 }
 
 #question {
@@ -39,7 +39,7 @@
 }
 
 #gameback{
-  background-color: #f9f2ec;
+  background-color: black;
 
 }
 
@@ -52,19 +52,54 @@
 }
 
 #bar {
-    color: white; 
+    color: white;
     font-family: 'Righteous', cursive;
-    background-color: #151414; 
     list-style-type: none;
-    margin: 0px; 
-    padding: 0px; 
+    margin: 0px;
+    padding: 10px;
+    position: fixed;
+}
+
+#logo {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  height: 235px;
+  width: auto;
 }
 
 li {
-    display: inline; 
+    display: inline;
     /* the original display for li elements is block */
 }
 
-.hiddenbar {
-    color:#151414; 
+.bar-item {
+  color: white;
+  margin-left: 10px;
+  margin-right: 5px;
+  font-family: 'Bangers', cursive;
+  font-size: 20px;
+}
+
+.bar-num {
+  color: white;
+  font-family: 'Bangers', cursive;
+  font-size: 20px;
+}
+
+#game-text{
+  border-width: 2px;
+  border-color: white;
+  border-style: solid;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -50px;
+  width: 300px;
+  height: 100px;
+}
+
+p {
+  color: white;
 }
