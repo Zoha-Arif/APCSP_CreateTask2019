@@ -1,0 +1,20 @@
+{
+    "particles": {
+        "number": {
+            "value": 100
+        },
+        "color": {
+            "value": "#fff"
+        },
+        "shape": {
+            "type": ["circle", "triangle", "polygon"]
+        },
+        "size": {
+            "value": 5
+        },
+
+        "opacity": {
+            "value": 0.1
+        }
+      },
+},

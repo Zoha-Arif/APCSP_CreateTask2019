@@ -12,9 +12,10 @@
 #question {
     color: white;
     position: absolute;
-    top: 69%;
+    top: 55%;
     left: 35%;
-    font-family: 'Source Code Pro', monospace;
+    font-family: 'Special Elite', cursive;
+    font-size: 18px;
 }
 
 #play {
@@ -25,17 +26,21 @@
     box-shadow: black;
     color: white;
     position: absolute;
-    top: 76%;
+    top: 60%;
     left: 35%;
-    font-family: 'Source Code Pro', monospace;
+    font-family: 'Special Elite', cursive;
+    font-size: 18px;
+
 }
 
 #no {
     color: white;
     position: absolute;
-    top: 78%;
+    top: 66%;
     left: 35%;
-    font-family: 'Source Code Pro', monospace;
+    font-family: 'Special Elite', cursive;
+    font-size: 18px;
+
 }
 
 #gameback{
@@ -60,12 +65,27 @@
     position: fixed;
 }
 
+#location {
+  letter-spacing: 1px;
+  font-size: 26px;
+}
+
+#lobby-logo {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 150px;
+  display: block;
+  height: 350px;
+  width: auto;
+}
+
 #logo {
   margin-left: auto;
   margin-right: auto;
   display: block;
-  height: 235px;
+  height: 270px;
   width: auto;
+  z-index: 10;
 }
 
 li {
@@ -88,18 +108,24 @@ li {
 }
 
 #game-text{
-  border-width: 2px;
+  border-width: 1px;
   border-color: white;
   border-style: solid;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -50px;
-  margin-left: -50px;
-  width: 300px;
-  height: 100px;
+  left: 17%;
+  top:35%;
+  width: 850px;
+  height: 400px;
+  padding-left: 15px;
+  padding-top: 6px;
 }
 
 p {
   color: white;
+  font-family: 'Special Elite', cursive;
+  font-size: 18px;
+}
+
+#particles-js {
+
 }

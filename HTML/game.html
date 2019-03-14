@@ -8,11 +8,30 @@
     <link rel="stylesheet" type="text/css" media="screen" href="../CSS/main.css"/>
     <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet"> \
+    <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="particles.json"></script>
     <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
 </head>
 <body id="gameback">
+  <div id="particles-js">
+    <script>
+      particlesJS.load("particles-js", "particles.json", function(){
+          console.log("particles.json loaded...");
+      })
+    </script>
+    <style>
+    #particles-js {
+        z-index: 0;
+        height: 120px;
+        width: 98%;
+        position: absolute;
+        top: 750px;
+    }
+    </style>
+  </div>
     <ul id="bar">
-        <li class="bar-item">Villiage</li>
+        <li class="bar-item" id="location">Villiage</li>
         <li class="bar-item">Score:</li>
         <li class="bar-num"id="score">0</li>
         <li class="bar-item">Moves:</li>
