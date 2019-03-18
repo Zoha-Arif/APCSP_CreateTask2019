@@ -7,12 +7,11 @@
             "value": "#fff"
         },
         "shape": {
-            "type": ["circle", "triangle", "polygon"]
+            "type": ["circle"]
         },
         "size": {
             "value": 5
         },
-
         "opacity": {
             "value": 0.1
         }

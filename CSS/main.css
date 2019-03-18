@@ -43,6 +43,16 @@
 
 }
 
+#user-answer{
+  color: white;
+  position: relative;
+  background-color: inherit;
+  outline: 0 none;
+  border: 0 none;
+  font-family:'Special Elite', cursive;
+  font-size: 18px;
+}
+
 #gameback{
   background-color: black;
 
@@ -124,6 +134,7 @@ p {
   color: white;
   font-family: 'Special Elite', cursive;
   font-size: 18px;
+  line-height: 20px;
 }
 
 #particles-js {
