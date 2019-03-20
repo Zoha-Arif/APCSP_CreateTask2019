@@ -43,6 +43,13 @@
 
 }
 
+#answer-bar {
+  position: fixed;
+  margin: 0;
+  top: 725px;
+  left: 17%;
+}
+
 #user-answer{
   color: white;
   position: relative;
