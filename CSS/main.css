@@ -43,6 +43,13 @@
 
 }
 
+li.command{
+  color: white;
+  font-family: 'Special Elite', cursive;
+  list-style-type: disc;
+  display: block;
+}
+
 #answer-bar {
   position: fixed;
   margin: 0;
@@ -58,6 +65,7 @@
   border: 0 none;
   font-family:'Special Elite', cursive;
   font-size: 18px;
+  padding: 10px;
 }
 
 #gameback{
@@ -135,6 +143,7 @@ li {
   height: 400px;
   padding-left: 15px;
   padding-top: 6px;
+  overflow: scroll;
 }
 
 p {

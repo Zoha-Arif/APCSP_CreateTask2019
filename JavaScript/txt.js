@@ -6,6 +6,7 @@
          "no": "prologue-no",
        }
    },
+
    "prologue": {
      "description": "You, an impoverished corn farmer living in a small villiage, \
      have been selected by the Honored Council of the Earth to venture into the Outlands \
@@ -17,23 +18,29 @@
      his most powerful enchantment. The Spell diminished his power greatly, but the Earth was saved. \
      Since then, he has been forced into hiding by his weakness; his power too little to cast the \
      spell once more in order defeat Skellybones: the newest threat to the Earth. You currently stand \
-     in your living room, nervous about the start of your quest. You decide it's time to pack your \
-     gear, because at least then you'll be physically prepared. To your left lies the front door, and \
-     to your right, the door to your basement. Where do you wish to go?"
+     in your living room, nervous about the start of your quest. In order to calm your nerves, you \
+     decide it's time to pack your gear. To your left lies the front door, and to your right, the door \
+     to your basement.",
+      "directions": {
+        "go left": "outside",
+        "go right": "basement",
+      },
    },
    "prologue-no": {
      "description": "Okay, well good luck..."
+   },
+
+   "outside":{
+     "description": "You now stand outside your house with the supplies you have packed and the map \
+     that the Council sent you."
    }
-    }
+ }
+
 
 var currentRoom = "start";
 
 function changeroom(dir) {
-  console.log(2);
-  console.log(dir);
     if (rooms[currentRoom].directions[dir]) {
-      console.log(dir);
-      console.log(4);
         currentRoom = rooms[currentRoom].directions[dir];
          $("#game-text").append("<p>" + rooms[currentRoom].description + "<p>");
   }
@@ -43,7 +50,7 @@ function changeroom(dir) {
 
 
 var inventory = ["slingshot"];
-var commands = ["go north", "go south", "go west", "go east", "look around", "climb up", "climb down", "hide now", "talk to", "show inventory", "show help", "use slingshot", "fight enemy", "talk yes", "talk no"];
+var commands = ["go forward", "go backward", "go left", "go right", "look around", "climb up", "climb down", "hide now", "talk to", "show inventory", "show help", "fight enemy", "talk yes", "talk no", "collect"];
 
 function showHelp(){
     $("#game-text").append("<p>Here are your complete list of commands: </p>");
