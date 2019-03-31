@@ -1,5 +1,8 @@
-.gameback {
+#gameback {
     background-color: black;
+    color: white;
+    font-family: 'Special Elite', cursive;
+    font-size: 18px;
 }
 
 #title1 {

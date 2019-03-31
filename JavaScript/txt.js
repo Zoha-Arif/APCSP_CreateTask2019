@@ -44,84 +44,114 @@ function changeroom(dir) {
         currentRoom = rooms[currentRoom].directions[dir];
          $("#game-text").append("<p>" + rooms[currentRoom].description + "<p>");
   }
-  console.log(3);
 }
-
-
-
-var inventory = ["slingshot"];
-var commands = ["go forward", "go backward", "go left", "go right", "look around", "climb up", "climb down", "hide now", "talk to", "show inventory", "show help", "fight enemy", "talk yes", "talk no", "collect"];
+var inventory = ["slice of cheese"];
+var commands = ["go forward", "go backward", "go left", "go right", "look around", "climb up", "climb down", "hide now", "talk to", "show inventory", "show help", "fight enemy", "collect"];
 
 function showHelp(){
     $("#game-text").append("<p>Here are your complete list of commands: </p>");
     $("#game-text").append("<ul>");
-    for (var l = 0; l < commands.length; l++){
-        $("#game-text").append("<li>" + commands[l] + "</li>");
+    for (var i = 0; i < commands.length; i++){
+        var final = commands.length - 1; 
+        if (i != final) {
+            $("#game-text").append("<li>" + commands[i] + "," + " " + "</li>");
+        }
+        else {
+            $("#game-text").append("<li>" + commands[i] + "</li>");
+        }
     }
     $("#game-text").append("</ul>");
 }
-
-
 
 function showInventory(){
     $("#game-text").append("<p>Here is your inventory: </p>");
     $("#game-text").append("<ul>");
     for (var l = 0; l < inventory.length; l++){
-        $("#game-text").append("<li>" + inventory[l] + "</li>");
-    }
+        var final1 = inventory.length - 1; 
+        if (l != final1) {
+            $("#game-text").append("<li>" + inventory[l] + " " + ", " + "</li>");
+        }
+        else {
+            $("#game-text").append("<li>" + inventory[l] + " " + "</li>");
+        }
     $("#game-text").append("</ul>");
 }
-
-
+}
 
 function playerInput(inputs) {
-    var command = inputs.split(" ")[0];
-    switch (command) {
+    //var command = inputs.split(" ")[0];
+    switch (inputs) {
       case "yes":
             //var dir = inputs.split(" ")[1];
             var dir = "yes";
-            console.log("input2" + dir);
             changeroom(dir);
             break;
-
         case "no":
             var dir = "no";
             changeroom(dir);
             break;
-        case "look":
+        case "go forward":
+            var dir = "go forward";
+            changeroom(dir);
+            break;
+        case "go backward":
+            var dir = "go backward";
+            changeroom(dir);
+            break;
+        case "go left":
+            var dir = "go left";
+            changeroom(dir);
+            break;
+        case "go right":
+            var dir = "go right";
+            changeroom(dir);
+            break;
+        case "hide":
             var dir = inputs.split(" ")[1];
             changeroom(dir);
             break;
-        case "use":
-             var dir = inputs.split(" ")[1];
-             changeroom(dir);
-        case "hide":
-             var dir = inputs.split(" ")[1];
-             changeroom(dir);
-        case "show":
-            if (inputs.split(" ")[1] == "help"){
-                showHelp();
-            }
-        case "fight":
-            var dir = inputs.split(" ")[1];
+        case "show help":
+            showHelp();
+            break;
+        case "show inventory":
+            showInventory(); 
+            break;
+        case "fight enemy":
+            var dir = "fight enemy";
             changeroom(dir);
-        case "talk":
-            if (inputs.split(" ")[1] == "help"){
-                showHelp();
-            }
-            else if (inputs.split(" ")[1] == "inventory") {
-                showInventory();
-              }
+            break;
+        case "look around":
+            var dir = "look around";
+            changeroom(dir);
+            break;
+        case "climb up":
+            var dir = "climb up";
+            changeroom(dir);
+            break;
+        case "climb down":
+            var dir = "climb down";
+            changeroom(dir);
+            break;
+        case "hide now":
+            var dir = "hide now";
+            changeroom(dir);
+            break;
+        case "talk to":
+            var dir = "talk to";
+            changeroom(dir);
+            break;
+        case "collect":
+            var dir = "collect";
+            changeroom(dir);
             break;
         default:
-        /* The speed/duration of the effect in milliseconds */
+        /* Default statement here.*/
 }
 }
 
 $(document).ready(function(){ //when document is ready, function will be executed.
     $(document).keypress(function(key){
         if (key.which == 13){
-          console.log(1);
             var input1 = $('#user-answer').val().toLowerCase();
             console.log("input1" + input1);
             playerInput(input1);
