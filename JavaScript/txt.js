@@ -68,8 +68,16 @@ function moves(){
     document.getElementById("moves").innerHTML = moves1; 
 }
 
-function score(){
-
+var score1 = 0; 
+function score(type){ 
+    if ("inventory" == type){
+        score1 = score1 + 10; 
+        document.getElementById("score").innerHTML = score1; 
+    }
+    else if (type == "enemy"){
+        score1 = score1 + 50; 
+        document.getElementById("score").innerHTML = score1; 
+    }
 }
 
 function showHelp(){
@@ -146,6 +154,7 @@ function playerInput(inputs) {
             var dir = "fight enemy";
             moves(); 
             changeroom(dir);
+            score("enemy"); 
             break;
         case "look around":
             var dir = "look around";
@@ -183,6 +192,8 @@ function playerInput(inputs) {
                     inventory.push("toothpaste"); 
                     var dir = "collect toothpaste";
                     changeroom(dir);
+                    score("inventory"); 
+                    moves(); 
                 }
             }
 }
