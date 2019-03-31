@@ -48,6 +48,11 @@ function changeroom(dir) {
 var inventory = ["slice of cheese"];
 var commands = ["go forward", "go backward", "go left", "go right", "look around", "climb up", "climb down", "hide now", "talk to", "show inventory", "show help", "fight enemy", "collect"];
 
+var moves1 = 0; 
+function moves(){
+    moves1++; 
+    document.getElementById("moves").innerHTML = moves1; 
+}
 function showHelp(){
     $("#game-text").append("<p>Here are your complete list of commands: </p>");
     $("#game-text").append("<ul>");
@@ -155,6 +160,7 @@ $(document).ready(function(){ //when document is ready, function will be execute
             var input1 = $('#user-answer').val().toLowerCase();
             console.log("input1" + input1);
             playerInput(input1);
+            moves(); 
             }
     })
     })
