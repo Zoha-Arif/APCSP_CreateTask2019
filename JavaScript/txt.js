@@ -204,7 +204,6 @@ $(document).ready(function(){ //when document is ready, function will be execute
         if (key.which == 13){
             var input1 = $('#user-answer').val().toLowerCase();
             $("#user-answer").val(""); 
-            console.log("input1" + input1);
             playerInput(input1);
             }
     })

@@ -146,7 +146,7 @@ li {
   height: 400px;
   padding-left: 15px;
   padding-top: 6px;
-  overflow: scroll;
+  /* overflow: scroll; */
 }
 
 p {
@@ -156,6 +156,27 @@ p {
   line-height: 20px;
 }
 
-#particles-js {
+.scrollbar {
+  overflow-y: scroll; 
+  overflow-x: hidden; 
+}
+::-webkit-scrollbar {
+  width: 8px; 
+  background-color: black; 
+}
 
+::-webkit-scrollbar-thumb {
+  border-radius: 10px; 
+  border-color: white; 
+  background-color: black; 
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px; 
+  border-color: white; 
+  background-color: black; 
+}
+
+::-webkit-scrollbar-button {
+  color: white; 
 }
