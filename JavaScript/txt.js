@@ -27,13 +27,27 @@
       },
    },
    "prologue-no": {
-     "description": "Okay, well good luck..."
+     "description": "Okay, well good luck...Say yes if you change your mind :)",
+     "directions": {
+        "yes": "prologue",
+        "no": "prologue-no",
+      }
    },
 
    "outside":{
      "description": "You now stand outside your house with the supplies you have packed and the map \
      that the Council sent you."
-   }
+   }, 
+
+   "basement": {
+    "description": "You enter your basement and descend down the steps. There is a tube of toothpaste sitting on a crate to your left and more supplies to your right.", 
+    "directions": {
+        "collect toothpaste": "collect1", 
+    }
+   }, 
+   "collect1": {
+       "description": "Toothpaste has been collected."
+   } 
  }
 
 
@@ -45,7 +59,7 @@ function changeroom(dir) {
          $("#game-text").append("<p>" + rooms[currentRoom].description + "<p>");
   }
 }
-var inventory = ["slice of cheese"];
+var inventory = ["slice of cheese", "map"];
 var commands = ["go forward", "go backward", "go left", "go right", "look around", "climb up", "climb down", "hide now", "talk to", "show inventory", "show help", "fight enemy", "collect"];
 
 var moves1 = 0; 
@@ -53,6 +67,11 @@ function moves(){
     moves1++; 
     document.getElementById("moves").innerHTML = moves1; 
 }
+
+function score(){
+
+}
+
 function showHelp(){
     $("#game-text").append("<p>Here are your complete list of commands: </p>");
     $("#game-text").append("<ul>");
@@ -90,30 +109,32 @@ function playerInput(inputs) {
             //var dir = inputs.split(" ")[1];
             var dir = "yes";
             changeroom(dir);
+            moves(); 
             break;
         case "no":
             var dir = "no";
             changeroom(dir);
+            moves(); 
             break;
         case "go forward":
             var dir = "go forward";
             changeroom(dir);
+            moves(); 
             break;
         case "go backward":
             var dir = "go backward";
             changeroom(dir);
+            moves(); 
             break;
         case "go left":
             var dir = "go left";
             changeroom(dir);
+            moves(); 
             break;
         case "go right":
             var dir = "go right";
             changeroom(dir);
-            break;
-        case "hide":
-            var dir = inputs.split(" ")[1];
-            changeroom(dir);
+            moves(); 
             break;
         case "show help":
             showHelp();
@@ -123,34 +144,47 @@ function playerInput(inputs) {
             break;
         case "fight enemy":
             var dir = "fight enemy";
+            moves(); 
             changeroom(dir);
             break;
         case "look around":
             var dir = "look around";
+            moves(); 
             changeroom(dir);
             break;
         case "climb up":
             var dir = "climb up";
+            moves(); 
             changeroom(dir);
             break;
         case "climb down":
             var dir = "climb down";
+            moves(); 
             changeroom(dir);
             break;
         case "hide now":
             var dir = "hide now";
             changeroom(dir);
+            moves(); 
             break;
         case "talk to":
             var dir = "talk to";
             changeroom(dir);
+            moves(); 
             break;
         case "collect":
             var dir = "collect";
             changeroom(dir);
+            moves(); 
             break;
         default:
-        /* Default statement here.*/
+            if (inputs.includes("collect")){
+                if (inputs == "collect toothpaste"){
+                    inventory.push("toothpaste"); 
+                    var dir = "collect toothpaste";
+                    changeroom(dir);
+                }
+            }
 }
 }
 
@@ -158,9 +192,9 @@ $(document).ready(function(){ //when document is ready, function will be execute
     $(document).keypress(function(key){
         if (key.which == 13){
             var input1 = $('#user-answer').val().toLowerCase();
+            $("#user-answer").val(""); 
             console.log("input1" + input1);
             playerInput(input1);
-            moves(); 
             }
     })
     })
