@@ -1,3 +1,6 @@
+var location1 = "lobby";
+changeLocation(location1);
+
  var rooms = {
    "start": {
      "description": "",
@@ -37,17 +40,17 @@
    "outside":{
      "description": "You now stand outside your house with the supplies you have packed and the map \
      that the Council sent you."
-   }, 
+   },
 
    "basement": {
-    "description": "You enter your basement and descend down the steps. There is a tube of toothpaste sitting on a crate to your left and more supplies to your right.", 
+    "description": "You enter your basement and descend down the steps. There is a tube of toothpaste sitting on a crate to your left and more supplies to your right.",
     "directions": {
-        "collect toothpaste": "collect1", 
+        "collect toothpaste": "collect1",
     }
-   }, 
+   },
    "collect1": {
        "description": "Toothpaste has been collected."
-   } 
+   }
  }
 
 
@@ -62,21 +65,21 @@ function changeroom(dir) {
 var inventory = ["slice of cheese", "map"];
 var commands = ["go forward", "go backward", "go left", "go right", "look around", "climb up", "climb down", "hide now", "talk to", "show inventory", "show help", "fight enemy", "collect"];
 
-var moves1 = 0; 
+var moves1 = 0;
 function moves(){
-    moves1++; 
-    document.getElementById("moves").innerHTML = moves1; 
+    moves1++;
+    document.getElementById("moves").innerHTML = moves1;
 }
 
-var score1 = 0; 
-function score(type){ 
+var score1 = 0;
+function score(type){
     if ("inventory" == type){
-        score1 = score1 + 10; 
-        document.getElementById("score").innerHTML = score1; 
+        score1 = score1 + 10;
+        document.getElementById("score").innerHTML = score1;
     }
     else if (type == "enemy"){
-        score1 = score1 + 50; 
-        document.getElementById("score").innerHTML = score1; 
+        score1 = score1 + 50;
+        document.getElementById("score").innerHTML = score1;
     }
 }
 
@@ -84,7 +87,7 @@ function showHelp(){
     $("#game-text").append("<p>Here are your complete list of commands: </p>");
     $("#game-text").append("<ul>");
     for (var i = 0; i < commands.length; i++){
-        var final = commands.length - 1; 
+        var final = commands.length - 1;
         if (i != final) {
             $("#game-text").append("<li>" + commands[i] + "," + " " + "</li>");
         }
@@ -99,7 +102,7 @@ function showInventory(){
     $("#game-text").append("<p>Here is your inventory: </p>");
     $("#game-text").append("<ul>");
     for (var l = 0; l < inventory.length; l++){
-        var final1 = inventory.length - 1; 
+        var final1 = inventory.length - 1;
         if (l != final1) {
             $("#game-text").append("<li>" + inventory[l] + " " + ", " + "</li>");
         }
@@ -117,93 +120,109 @@ function playerInput(inputs) {
             //var dir = inputs.split(" ")[1];
             var dir = "yes";
             changeroom(dir);
-            moves(); 
+            moves();
             break;
         case "no":
             var dir = "no";
             changeroom(dir);
-            moves(); 
+            moves();
             break;
         case "go forward":
             var dir = "go forward";
             changeroom(dir);
-            moves(); 
+            moves();
             break;
         case "go backward":
             var dir = "go backward";
             changeroom(dir);
-            moves(); 
+            moves();
             break;
         case "go left":
             var dir = "go left";
             changeroom(dir);
-            moves(); 
+            moves();
             break;
         case "go right":
             var dir = "go right";
             changeroom(dir);
-            moves(); 
+            moves();
             break;
         case "show help":
             showHelp();
             break;
         case "show inventory":
-            showInventory(); 
+            showInventory();
             break;
         case "fight enemy":
             var dir = "fight enemy";
-            moves(); 
+            moves();
             changeroom(dir);
-            score("enemy"); 
+            score("enemy");
             break;
         case "look around":
             var dir = "look around";
-            moves(); 
+            moves();
             changeroom(dir);
             break;
         case "climb up":
             var dir = "climb up";
-            moves(); 
+            moves();
             changeroom(dir);
             break;
         case "climb down":
             var dir = "climb down";
-            moves(); 
+            moves();
             changeroom(dir);
             break;
         case "hide now":
             var dir = "hide now";
             changeroom(dir);
-            moves(); 
+            moves();
             break;
         case "talk to":
             var dir = "talk to";
             changeroom(dir);
-            moves(); 
+            moves();
             break;
         case "collect":
             var dir = "collect";
             changeroom(dir);
-            moves(); 
+            moves();
             break;
         default:
             if (inputs.includes("collect")){
                 if (inputs == "collect toothpaste"){
-                    inventory.push("toothpaste"); 
+                    inventory.push("toothpaste");
                     var dir = "collect toothpaste";
                     changeroom(dir);
-                    score("inventory"); 
-                    moves(); 
+                    score("inventory");
+                    moves();
                 }
             }
 }
+}
+
+function changeLocation(location1) {
+
+  if (location1 == "lobby"){
+    console.log(document.getElementById("location").value); 
+    document.getElementById("location").innerHTML = "lobby";
+  } else if (location1 == "livingroom"){
+    document.getElementById("location").innerHTML = location1;
+  } else if (location1 == "basement"){
+    document.getElementById("location").innerHTML = location1;
+  } else if (location1 == "outside"){
+    document.getElementById("location").innerHTML = location1;
+  } else if (location1 == "mysticforest"){
+    document.getElementById("location").innerHTML = location1;
+  }
 }
 
 $(document).ready(function(){ //when document is ready, function will be executed.
     $(document).keypress(function(key){
         if (key.which == 13){
             var input1 = $('#user-answer').val().toLowerCase();
-            $("#user-answer").val(""); 
+            $("#user-answer").val("");
             playerInput(input1);
             }
     })
