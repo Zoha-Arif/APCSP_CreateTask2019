@@ -89,6 +89,7 @@
        "description": "Toothpaste has been collected.",
        "directions": {
          "go backward": "living-room",
+         "search": "search-crate",
        }
    },
 
@@ -98,6 +99,40 @@
        "go backward": "living-room",
      }
    },
+
+   "outside-forest": {
+     "description": "You now stand just outside the Mystic Forest. Go forwards to enter.",
+     "directions": {
+        "go forward": "mystic-forest",
+     }
+   },
+
+   "mystic-forest": {
+     "description": "You have now entered the Mystic Forest. In the dim \
+     lighting, you can just make out a bright patch in the distance which you assume to be a clearing.",
+     "directions": {
+        "go forward": "mf-sword",
+        "go backward": "outside-forest",
+     }
+   },
+
+   "mf-sword": {
+     "description": "Your mind wanders while you trek onward, and you stumble over something under the rotting leaves.",
+     "directions": {
+       "search": "sword",
+       "go forward": "encounter-giant",
+       "go backward": "outside-forest",
+     }
+   },
+
+   "sword": {
+     "description": "Under the leaves you discover the magnificent sword of an Adventurer who \
+                    came before you. The blade suits you nicely, not too long or heavy, and the \
+                    new weapon sends a rush of courage through you. However the caked on blood \
+                    reminds you why you’ve been sent on this quest and fills you with a new \
+                    determination to save the Earth. ",
+   }
+
  }
 
 var currentRoom = "start";
@@ -120,10 +155,11 @@ function changeLocation(currentRoom){
     document.getElementById("location").innerHTML = "Basement";
   } else if(currentRoom == "outside"){
     document.getElementById("location").innerHTML = "outside";
+  } else if(currentRoom == "mystic-forest"){
+    document.getElementById("location").innerHTML = "The Mystic Forest";
   } else if(currentRoom == ""){
     document.getElementById("location").innerHTML = "";
   }
-
 }
 
 var inventory = ["slice of cheese", "map"];
@@ -282,7 +318,7 @@ function playerInput(inputs) {
 function playerDeath(currentRoom, inventory){
 
   if(currentRoom == "fight-goblins" && inventory.includes("shield")){
-
+    score("enemy");
   } else if (currentRoom == "fight-goblins") {
     window.alert(`You have died! Rest in peace, brave Adventurer... Your final score was ${score1} and you made a total of ${moves1} moves.`);
     score("death");
