@@ -29,27 +29,74 @@
    },
 
    "prologue-no": {
-     "description": "Okay, well good luck...Say yes if you change your mind :)",
+     "description": "Okay, well good luck... You can always change your mind...",
      "directions": {
         "yes": "prologue",
         "no": "prologue-no",
       }
    },
 
+   "living-room": {
+     "description": "You've returned to your living room. The front door is to your left and your basement \
+                     is to your right.",
+     "directions": {
+        "go left": "outside",
+        "go right": "basement",
+     }
+   },
+
    "outside":{
-     "description": "You now stand outside your house with the supplies you have packed and the map \
-     that the Council sent you."
+     "description": "You have now officially begun your quest! In front of you lies the Mystic Forest, \
+     and behind you lies the Village. Watch out though, because even though you’ve just started your journey, \
+     Skellybones’s minions are already hunting you down. In fact, a small horde of Goblins is approaching as \
+     we speak! Good luck, Adventurer!",
+
+     "directions": {
+       "fight": "fight-goblins",
+       "go backward": "living-room",
+     }
+   },
+
+   "fight-goblins": {
+     "description": "Good idea! The Goblins are numerous, but not very effective fighters. You are \
+                       able to defeat them with just the might of your fists. In case you forgot, the Mystic \
+                       Forest lies in front of you, and your village behind you.",
+     "directions": {
+       "go forward": "mystic-forest",
+       "go backward": "living-room",
+     }
    },
 
    "basement": {
-    "description": "You enter your basement and descend down the steps. There is a tube of toothpaste sitting on a crate to your left and more supplies to your right.",
+    "description": "You enter your basement and descend down the steps. There is a tube of toothpaste sitting on a crate right in front of you.",
     "directions": {
         "collect toothpaste": "collect1",
+        "go backward": "living-room",
+        "search": "search-crate",
     }
    },
+
+   "search-crate": {
+     "description": "You open the crate and find a shield inside.",
+     "directions": {
+       "collect shield": "collect2",
+       "go backward": "living-room",
+     }
+   },
+
    "collect1": {
-       "description": "Toothpaste has been collected."
-   }
+       "description": "Toothpaste has been collected.",
+       "directions": {
+         "go backward": "living-room",
+       }
+   },
+
+   "collect2": {
+     "description": "The shield has been collected.",
+     "directions": {
+       "go backward": "living-room",
+     }
+   },
  }
 
 var currentRoom = "start";
@@ -66,10 +113,12 @@ function changeLocation(){
 
   if(currentRoom == "start"){
     document.getElementById("location").innerHTML = "Lobby";
-  } else if(currentRoom == "prologue"){
+  } else if(currentRoom == "prologue" || currentRoom == "living-room"){
     document.getElementById("location").innerHTML = "Living Room";
   } else if(currentRoom == "basement"){
     document.getElementById("location").innerHTML = "Basement";
+  } else if(currentRoom == "outside"){
+    document.getElementById("location").innerHTML = "outside";
   } else if(currentRoom == ""){
     document.getElementById("location").innerHTML = "";
   }
@@ -77,7 +126,7 @@ function changeLocation(){
 }
 
 var inventory = ["slice of cheese", "map"];
-var commands = ["go forward", "go backward", "go left", "go right", "look around", "climb up", "climb down", "hide now", "talk to", "show inventory", "show help", "fight enemy", "collect"];
+var commands = ["go forward", "go backward", "go left", "go right", "search", "climb up", "climb down", "hide now", "talk to", "show inventory", "show help", "fight enemy", "collect"];
 
 var moves1 = 0;
 function moves(){
@@ -167,14 +216,14 @@ function playerInput(inputs) {
         case "show inventory":
             showInventory();
             break;
-        case "fight enemy":
-            var dir = "fight enemy";
+        case "fight":
+            var dir = "fight";
             moves();
             changeroom(dir);
             score("enemy");
             break;
-        case "look around":
-            var dir = "look around";
+        case "search":
+            var dir = "search";
             moves();
             changeroom(dir);
             break;
@@ -208,6 +257,12 @@ function playerInput(inputs) {
                 if (inputs == "collect toothpaste"){
                     inventory.push("toothpaste");
                     var dir = "collect toothpaste";
+                    changeroom(dir);
+                    score("inventory");
+                    moves();
+                } else if(inputs == "collect shield"){
+                    inventory.push("shield");
+                    var dir = "collect shield";
                     changeroom(dir);
                     score("inventory");
                     moves();
