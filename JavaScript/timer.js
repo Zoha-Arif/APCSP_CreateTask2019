@@ -16,7 +16,7 @@ var x = setInterval(function() {
     document.getElementById("timer").innerHTML = "EXPIRED";
     var score =  document.getElementById("score").innerHTML;
     var moves = document.getElementById("moves").innerHTML;
-    window.alert(`Uh oh! It seems that your time has run out! Your final score was ${score}. You made a total of ${moves} moves.`);
+    window.alert(`Uh oh! It seems that your time has run out! Your final score was ${score1}. You made a total of ${moves1} moves.`);
     //Add some more code for when the timer runs out to end the game.
   }
 }, 1000);

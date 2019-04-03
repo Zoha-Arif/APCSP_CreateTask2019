@@ -64,6 +64,7 @@
      "directions": {
        "go forward": "mystic-forest",
        "go backward": "living-room",
+       "death": "living-room",
      }
    },
 
@@ -105,11 +106,11 @@ function changeroom(dir) {
     if (rooms[currentRoom].directions[dir]) {
         currentRoom = rooms[currentRoom].directions[dir];
          $("#game-text").append("<p>" + rooms[currentRoom].description + "<p>");
-         changeLocation();
+         changeLocation(currentRoom);
   }
 }
 
-function changeLocation(){
+function changeLocation(currentRoom){
 
   if(currentRoom == "start"){
     document.getElementById("location").innerHTML = "Lobby";
@@ -129,9 +130,12 @@ var inventory = ["slice of cheese", "map"];
 var commands = ["go forward", "go backward", "go left", "go right", "search", "climb up", "climb down", "hide now", "talk to", "show inventory", "show help", "fight enemy", "collect"];
 
 var moves1 = 0;
-function moves(){
+function moves(type){
+  if (type == "regular") {
     moves1++;
     document.getElementById("moves").innerHTML = moves1;
+  }
+
 }
 
 var score1 = 0;
@@ -143,6 +147,10 @@ function score(type){
     else if (type == "enemy"){
         score1 = score1 + 50;
         document.getElementById("score").innerHTML = score1;
+    }
+    else if (type == "death") {
+      score1 = score1 - score1;
+      document.getElementById("score").innerHTML = score1;
     }
 }
 
@@ -183,32 +191,32 @@ function playerInput(inputs) {
             //var dir = inputs.split(" ")[1];
             var dir = "yes";
             changeroom(dir);
-            moves();
+            moves("regular");
             break;
         case "no":
             var dir = "no";
             changeroom(dir);
-            moves();
+            moves("regular");
             break;
         case "go forward":
             var dir = "go forward";
             changeroom(dir);
-            moves();
+            moves("regular");
             break;
         case "go backward":
             var dir = "go backward";
             changeroom(dir);
-            moves();
+            moves("regular");
             break;
         case "go left":
             var dir = "go left";
             changeroom(dir);
-            moves();
+            moves("regular");
             break;
         case "go right":
             var dir = "go right";
             changeroom(dir);
-            moves();
+            moves("regular");
             break;
         case "show help":
             showHelp();
@@ -218,39 +226,39 @@ function playerInput(inputs) {
             break;
         case "fight":
             var dir = "fight";
-            moves();
+            moves("regular");
             changeroom(dir);
-            score("enemy");
+            playerDeath(currentRoom, inventory);
             break;
         case "search":
             var dir = "search";
-            moves();
+            moves("regular");
             changeroom(dir);
             break;
         case "climb up":
             var dir = "climb up";
-            moves();
+            moves("regular");
             changeroom(dir);
             break;
         case "climb down":
             var dir = "climb down";
-            moves();
+            moves("regular");
             changeroom(dir);
             break;
         case "hide now":
             var dir = "hide now";
             changeroom(dir);
-            moves();
+            moves("regular");
             break;
         case "talk to":
             var dir = "talk to";
             changeroom(dir);
-            moves();
+            moves("regular");
             break;
         case "collect":
             var dir = "collect";
             changeroom(dir);
-            moves();
+            moves("regular");
             break;
         default:
             if (inputs.includes("collect")){
@@ -259,18 +267,31 @@ function playerInput(inputs) {
                     var dir = "collect toothpaste";
                     changeroom(dir);
                     score("inventory");
-                    moves();
+                    moves("regular");
                 } else if(inputs == "collect shield"){
                     inventory.push("shield");
                     var dir = "collect shield";
                     changeroom(dir);
                     score("inventory");
-                    moves();
+                    moves("regular");
                 }
             }
 }
 }
 
+function playerDeath(currentRoom, inventory){
+
+  if(currentRoom == "fight-goblins" && inventory.includes("shield")){
+
+  } else if (currentRoom == "fight-goblins") {
+    window.alert(`You have died! Rest in peace, brave Adventurer... Your final score was ${score1} and you made a total of ${moves1} moves.`);
+    score("death");
+    dir = "death";
+    changeroom(dir);
+    changeLocation(currentRoom);
+  }
+
+}
 
 $(document).ready(function(){ //when document is ready, function will be executed.
     $(document).keypress(function(key){
