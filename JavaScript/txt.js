@@ -1,5 +1,3 @@
-var location1 = "lobby";
-changeLocation(location1);
 
  var rooms = {
    "start": {
@@ -29,6 +27,7 @@ changeLocation(location1);
         "go right": "basement",
       },
    },
+
    "prologue-no": {
      "description": "Okay, well good luck...Say yes if you change your mind :)",
      "directions": {
@@ -53,15 +52,30 @@ changeLocation(location1);
    }
  }
 
-
 var currentRoom = "start";
 
 function changeroom(dir) {
     if (rooms[currentRoom].directions[dir]) {
         currentRoom = rooms[currentRoom].directions[dir];
          $("#game-text").append("<p>" + rooms[currentRoom].description + "<p>");
+         changeLocation();
   }
 }
+
+function changeLocation(){
+
+  if(currentRoom == "start"){
+    document.getElementById("location").innerHTML = "Lobby";
+  } else if(currentRoom == "prologue"){
+    document.getElementById("location").innerHTML = "Living Room";
+  } else if(currentRoom == "basement"){
+    document.getElementById("location").innerHTML = "Basement";
+  } else if(currentRoom == ""){
+    document.getElementById("location").innerHTML = "";
+  }
+
+}
+
 var inventory = ["slice of cheese", "map"];
 var commands = ["go forward", "go backward", "go left", "go right", "look around", "climb up", "climb down", "hide now", "talk to", "show inventory", "show help", "fight enemy", "collect"];
 
@@ -202,21 +216,6 @@ function playerInput(inputs) {
 }
 }
 
-function changeLocation(location1) {
-
-  if (location1 == "lobby"){
-    console.log(document.getElementById("location").value); 
-    document.getElementById("location").innerHTML = "lobby";
-  } else if (location1 == "livingroom"){
-    document.getElementById("location").innerHTML = location1;
-  } else if (location1 == "basement"){
-    document.getElementById("location").innerHTML = location1;
-  } else if (location1 == "outside"){
-    document.getElementById("location").innerHTML = location1;
-  } else if (location1 == "mysticforest"){
-    document.getElementById("location").innerHTML = location1;
-  }
-}
 
 $(document).ready(function(){ //when document is ready, function will be executed.
     $(document).keypress(function(key){

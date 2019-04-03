@@ -60,7 +60,7 @@ li.command{
 #answer-bar {
   position: fixed;
   margin: 0;
-  top: 725px;
+  top: 91%;
   left: 17%;
 }
 
@@ -157,7 +157,7 @@ p {
   color: white;
   font-family: 'Special Elite', cursive;
   font-size: 18px;
-  line-height: 20px;
+  line-height: 25px;
 }
 
 .scrollbar {
