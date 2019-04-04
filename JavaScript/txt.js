@@ -47,8 +47,8 @@
 
    "outside":{
      "description": "You have now officially begun your quest! In front of you lies the Mystic Forest, \
-     and behind you lies the Village. Watch out though, because even though you’ve just started your journey, \
-     Skellybones’s minions are already hunting you down. In fact, a small horde of Goblins is approaching as \
+     and behind you lies the Village. Watch out though, because even though you have just started your journey, \
+     Skellybones minions are already hunting you down. In fact, a small horde of Goblins is approaching as \
      we speak! Good luck, Adventurer!",
 
      "directions": {
@@ -129,7 +129,7 @@
      "description": "Under the leaves you discover the magnificent sword of an Adventurer who \
                     came before you. The blade suits you nicely, not too long or heavy, and the \
                     new weapon sends a rush of courage through you. However the caked on blood \
-                    reminds you why you’ve been sent on this quest and fills you with a new \
+                    reminds you why you have been sent on this quest and fills you with a new \
                     determination to save the Earth. ",
      "directions": {
        "collect sword": "collect3",
@@ -147,12 +147,52 @@
    },
 
    "encounter-giant": {
-     "description": "You spot a large figure just a few yards ahead… what could it be?",
+     "description": "You spot a large figure just a few yards ahead. What could it be?",
      "directions": {
        "go forward": "giant",
        "go backward": "mf-sword",
      }
    },
+
+   "giant": {
+     "description": "A Giant is blocking your only path forward.",
+     "directions": {
+       "fight": "fight-giant",
+       "go backward": "avoid-giant",
+     }
+   },
+
+   "fight-giant": {
+     "description": "Wow! Were those fighting skills the result of pure adrenaline, \
+     or did the Council strike gold when they selected you for this adventure?! You slayed \
+     the Giant with incredible grace and you are almost to the Clearing. ",
+     "directions": {
+       "go forward": "clearing",
+     }
+   },
+
+   "avoid-giant": {
+     "description": "You have avoided the Giant for now, but remember, you don’t have forever to complete your mission.",
+     "directions": {
+       "go forward": "fight-giant",
+     }
+   },
+
+   "clearing": {
+     "description": "You have now entered the Clearing. You decide to camp here for a \
+                     little while, but your next step will be to do a little bit of exploring. \
+                     You can continue forwards towards Caspian’s lair, but there are two paths between \
+                     the trees to your right and to your left. ",
+     "directions": {
+        "go forward": "exit-mf",
+        "go right": "cliff",
+        "go left": "encounter-ghosts",
+     }
+   },
+
+   "exit-mf": "Congratulations! You successfully made it through the Mystic Forest. Looking out on the horizon \
+               you can see a small, abandoned-looking castle. This must be Caspian's lair! However, you can't
+               simply walk right in. There is an enormous Golden Sphinx on the prowl, guarding the castle."
 
  }
 
@@ -184,7 +224,7 @@ function changeLocation(currentRoom){
 }
 
 var inventory = ["slice of cheese", "map"];
-var commands = ["go forward", "go backward", "go left", "go right", "search", "climb up", "climb down", "hide now", "talk to", "show inventory", "show help", "fight enemy", "collect"];
+var commands = ["go forward", "go backward", "go left", "go right", "search", "talk to", "show inventory", "show help", "fight", "collect"];
 
 var moves1 = 0;
 function moves(type){
@@ -292,21 +332,6 @@ function playerInput(inputs) {
             moves("regular");
             changeroom(dir);
             break;
-        case "climb up":
-            var dir = "climb up";
-            moves("regular");
-            changeroom(dir);
-            break;
-        case "climb down":
-            var dir = "climb down";
-            moves("regular");
-            changeroom(dir);
-            break;
-        case "hide now":
-            var dir = "hide now";
-            changeroom(dir);
-            moves("regular");
-            break;
         case "talk to":
             var dir = "talk to";
             changeroom(dir);
@@ -344,14 +369,25 @@ function playerInput(inputs) {
 
 function playerDeath(currentRoom, inventory){
 
-  if(currentRoom == "fight-goblins" && inventory.includes("shield")){
+  if(currentRoom == "fight-goblins" && inventory.includes("shield") || currentRoom == "fight-giant" && inventory.includes("shield")){
     score("enemy");
+
   } else if (currentRoom == "fight-goblins") {
-    window.alert(`You have died! Rest in peace, brave Adventurer... Your final score was ${score1} and you made a total of ${moves1} moves.`);
+    window.alert(`You were slain by the horde of Goblins! Rest in peace, brave Adventurer... Your final score was ${score1} and you made a total of ${moves1} moves.`);
     score("death");
+    inventory = ["slice of cheese", "map"];
     dir = "death";
     changeroom(dir);
     changeLocation(currentRoom);
+
+  } else if (currentRoom == "fight-giant") {
+    window.alert(`You were slain by the Giant! Rest in peace, brave Adventurer... Your final score was ${score1} and you made a total of ${moves1} moves.`);
+    score("death");
+    inventory = ["slice of cheese", "map"];
+    dir = "death";
+    changeroom(dir);
+    changeLocation(currentRoom);
+
   }
 
 }
