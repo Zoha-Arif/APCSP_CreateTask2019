@@ -190,9 +190,30 @@
      }
    },
 
-   "exit-mf": "Congratulations! You successfully made it through the Mystic Forest. Looking out on the horizon \
-               you can see a small, abandoned-looking castle. This must be Caspian's lair! However, you can't
-               simply walk right in. There is an enormous Golden Sphinx on the prowl, guarding the castle."
+   "exit-mf": {
+     "description": "Congratulations! You successfully made it through the Mystic Forest. Looking out on the horizon \
+                    you can see a small, abandoned-looking castle. This must be Caspian's lair! However, you can't \
+                    simply walk right in. There is an enormous Golden Sphinx on the prowl, guarding the castle. \
+                    Hopefully she will see that you come in peace. Good luck!",
+    "directions": {
+      "go forward": "walk-onward",
+      "go backward": "clearing",
+    }
+   },
+
+   "cliff": {},
+
+   "encounter-ghosts": {
+     "description": "In the distance you spot some Ghosts. You watch as they disintegrate trees with their projectile spells.",
+     "directions": {
+       "fight": "ghosts",
+       "go backward": "clearing",
+     }
+   },
+
+   "ghosts": {},
+
+
 
  }
 
@@ -214,7 +235,7 @@ function changeLocation(currentRoom){
     document.getElementById("location").innerHTML = "Living Room";
   } else if(currentRoom == "basement"){
     document.getElementById("location").innerHTML = "Basement";
-  } else if(currentRoom == "outside"){
+  } else if(currentRoom == "outside" || currentRoom == "exit-mf"){
     document.getElementById("location").innerHTML = "outside";
   } else if(currentRoom == "mystic-forest"){
     document.getElementById("location").innerHTML = "The Mystic Forest";
@@ -364,7 +385,7 @@ function playerInput(inputs) {
                   moves("regular");
                 }
             }
-}
+      }
 }
 
 function playerDeath(currentRoom, inventory){
@@ -382,6 +403,22 @@ function playerDeath(currentRoom, inventory){
 
   } else if (currentRoom == "fight-giant") {
     window.alert(`You were slain by the Giant! Rest in peace, brave Adventurer... Your final score was ${score1} and you made a total of ${moves1} moves.`);
+    score("death");
+    inventory = ["slice of cheese", "map"];
+    dir = "death";
+    changeroom(dir);
+    changeLocation(currentRoom);
+
+  } else if (currentRoom == "cliff") {
+    window.alert(`You fell off a cliff! Rest in peace, brave Adventurer... Your final score was ${score1} and you made a total of ${moves1} moves.`);
+    score("death");
+    inventory = ["slice of cheese", "map"];
+    dir = "death";
+    changeroom(dir);
+    changeLocation(currentRoom);
+
+  } else if (currentRoom == "ghosts") {
+    window.alert(`You were slain by the Ghosts! Rest in peace, brave Adventurer... Your final score was ${score1} and you made a total of ${moves1} moves.`);
     score("death");
     inventory = ["slice of cheese", "map"];
     dir = "death";
