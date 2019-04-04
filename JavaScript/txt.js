@@ -131,7 +131,28 @@
                     new weapon sends a rush of courage through you. However the caked on blood \
                     reminds you why you’ve been sent on this quest and fills you with a new \
                     determination to save the Earth. ",
-   }
+     "directions": {
+       "collect sword": "collect3",
+       "go forward": "encounter-giant",
+       "go backward": "mf-sword",
+     }
+   },
+
+   "collect3": {
+     "description": "The sword has been collected.",
+     "directions": {
+       "go forward": "encounter-giant",
+       "go backward": "mf-sword",
+     }
+   },
+
+   "encounter-giant": {
+     "description": "You spot a large figure just a few yards ahead… what could it be?",
+     "directions": {
+       "go forward": "giant",
+       "go backward": "mf-sword",
+     }
+   },
 
  }
 
@@ -310,6 +331,12 @@ function playerInput(inputs) {
                     changeroom(dir);
                     score("inventory");
                     moves("regular");
+                } else if(inputs === "collect sword"){
+                  inventory.push("shield");
+                  dir = "collect sword";
+                  changeroom(dir);
+                  score("inventory");
+                  moves("regular");
                 }
             }
 }
