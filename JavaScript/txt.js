@@ -203,6 +203,9 @@
 
    "cliff": {
      "description": "Look out below! You have fallen off a cliff.",
+     "directions": {
+
+     }
    },
 
    "encounter-ghosts": {
@@ -215,6 +218,9 @@
 
    "ghosts": {
      "description": "You should not have brought a sword to a spells battle! You have died.",
+     "directions": {
+       
+     }
    },
 
    "walk-onward": {
@@ -232,7 +238,7 @@
        "talk to": "riddle1",
      }
    },
-   
+
     "riddle1": {
      "description": "You say 'hello!' The sphinx nods her head and in a voice like nectarine tells you that if you would like to live, you \
      must solve three riddles. The first riddle she asks you is this: \
