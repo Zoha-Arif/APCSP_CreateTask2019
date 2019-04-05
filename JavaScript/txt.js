@@ -225,6 +225,79 @@
         "go forward": "sphinx-pounce",
       }
    },
+   "sphinx-pounce": {
+     "description": "The sphinx springs upon you and you cower, awaiting her claws and teeth. But when you open your eyes, you \
+     see the sphinx centimeters away from you.",
+     "directions": {
+       "talk to": "riddle1",
+     }
+   },
+   
+    "riddle1": {
+     "description": "You say 'hello!' The sphinx nods her head and in a voice like nectarine tells you that if you would like to live, you \
+     must solve three riddles. The first riddle she asks you is this: \
+     A man is going to a party. Along the way he meets a man with seven wives. Each of the wives as seven bags. \
+     Each of the bags have seven cats. \
+     Each of the cats has seven kittens. Each of the kittens has seven toys. How many people are going to the party?\
+     a. 1 \
+     b. 0 \
+     c. 16, 807 \
+     d. 7",
+     "directions": {
+       "a": "correct1",
+       "b": "wrong1",
+       "c": "wrong1",
+       "d": "wrong1",
+     }
+   },
+
+   "correct1": {
+     "description": "The sphinx nods her head, impressed that you have passed the first test. She begins telling you the next riddle: \
+     If there are 100000000 bricks on a plane, and one falls off, how many are left? \
+     a. 99999999 \
+     b. 100000000 \
+     c. 3749875 \
+     d. 1 \
+     e. 0",
+     "directions": {
+       "a": "correct2",
+       "b": "wrong2",
+       "c": "wrong2",
+       "d": "wrong2",
+       "e": "wrong2",
+     }
+   },
+
+   "correct2": {
+     "description": "The sphinx adjusts her paws and picks her teeth, a bit tense with yor apparent talent for riddles. \
+     However, she is certain that you will not solve this last one. She says: A woman is walking, then suddenly dies in the middle of \
+      the street. How? \
+      a. She was run over by a car \
+      b. She was hit with a brick \
+      c. She was shot \
+      d. She was poisoned",
+      "directions": {
+        "a": "wrong3",
+        "b": "correct3",
+        "c": "wrong3",
+        "d": "wrong4",
+      }
+   },
+
+   "correct3": {
+     "description": "Congratulations! You have passed the Sphinx's riddle test.",
+     "directions": {
+       "go forward": "room6",
+     }
+   },
+
+   "wrong3": {
+     "description": "The sphinx breaks a toothy grin and suddenly springs upon you, breaking through your skin and bones. You have died.",
+   },
+
+   "wrong1": {
+     "description": "The sphinx breaks a toothy grin and suddenly springs upon you, breaking through your skin and bones. You have died.",
+   }
 
  }
 
@@ -259,7 +332,7 @@ function changeLocation(currentRoom){
 }
 
 var inventory = ["slice of cheese", "map"];
-var commands = ["go forward", "go backward", "go left", "go right", "search", "talk to", "show inventory", "show help", "fight", "collect"];
+var commands = ["go forward", "go backward", "go left", "go right", "search", "talk to", "show inventory", "show help", "fight", "collect", "a", "b", "c", "d"];
 
 var moves1 = 0;
 function moves(type){
@@ -327,6 +400,26 @@ function playerInput(inputs) {
             break;
         case "no":
             var dir = "no";
+            changeroom(dir);
+            moves("regular");
+            break;
+        case "a":
+            var dir = "a";
+            changeroom(dir);
+            moves("regular");
+            break;
+        case "b":
+            var dir = "b";
+            changeroom(dir);
+            moves("regular");
+            break;
+        case "c":
+            var dir = "c";
+            changeroom(dir);
+            moves("regular");
+            break;
+        case "d":
+            var dir = "d";
             changeroom(dir);
             moves("regular");
             break;
@@ -428,6 +521,7 @@ function playerDeath(currentRoom, inventory){
     changeLocation(currentRoom);
 
   } else if (currentRoom == "cliff") {
+    console.log()
     window.alert(`You fell off a cliff! Rest in peace, brave Adventurer... Your final score was ${score1} and you made a total of ${moves1} moves.`);
     score("death");
     inventory = ["slice of cheese", "map"];
