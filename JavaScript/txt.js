@@ -51,17 +51,11 @@
      we speak! Good luck, Adventurer!",
 
      "directions": {
-       "go forward": "fight-goblins1",
+       "fight": "fight-goblins",
        "go backward": "living-room",
+
      }
    },
-
-   "fight-goblins1": {
-     "description": "It seems that you have approached a horde of goblins. They are blocking your path and you must fight them to continue.", 
-     "directions": {
-       "fight": "fight-goblins", 
-     }
-   }, 
 
    "fight-goblins": {
      "description": "Good idea! The Goblins are numerous, but not very effective fighters. You are \
@@ -207,7 +201,9 @@
     }
    },
 
-   "cliff": {},
+   "cliff": {
+     "description": "Look out below! You have fallen off a cliff.",
+   },
 
    "encounter-ghosts": {
      "description": "In the distance you spot some Ghosts. You watch as they disintegrate trees with their projectile spells.",
@@ -217,9 +213,18 @@
      }
    },
 
-   "ghosts": {},
+   "ghosts": {
+     "description": "You should not have brought a sword to a spells battle! You have died.",
+   },
 
-
+   "walk-onward": {
+     "description": "Hours pass as you trek onward and the tiny castle in the distance \
+                     grows larger with every step. However, so does the Sphinx who has become acutely aware \
+                     of your approach.",
+     "directions": {
+        "go forward": "sphinx-pounce",
+      }
+   },
 
  }
 
@@ -232,7 +237,7 @@ function changeroom(dir) {
          changeLocation(currentRoom);
   }
   else {
-    $("#game-text").append("<p>" + "Uh oh, you cannot execute that command!" + "<p>"); 
+    $("#game-text").append("<p>" + "Uh oh, you cannot execute that command!" + "<p>");
   }
 }
 
@@ -342,6 +347,7 @@ function playerInput(inputs) {
             break;
         case "go right":
             var dir = "go right";
+            playerDeath(currentRoom);
             changeroom(dir);
             moves("regular");
             break;
@@ -387,7 +393,7 @@ function playerInput(inputs) {
                     score("inventory");
                     moves("regular");
                 } else if(inputs === "collect sword"){
-                  inventory.push("shield");
+                  inventory.push("sword");
                   dir = "collect sword";
                   changeroom(dir);
                   score("inventory");
@@ -399,7 +405,10 @@ function playerInput(inputs) {
 
 function playerDeath(currentRoom, inventory){
 
-  if(currentRoom == "fight-goblins" && inventory.includes("shield") || currentRoom == "fight-giant" && inventory.includes("shield")){
+  if(currentRoom == "fight-goblins" && inventory.includes("shield")){
+    score("enemy");
+
+  } else if (currentRoom == "fight-giant" && inventory.includes("shield")) {
     score("enemy");
 
   } else if (currentRoom == "fight-goblins") {
