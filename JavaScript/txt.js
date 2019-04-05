@@ -27,7 +27,6 @@
         "go right": "basement",
       },
    },
-
    "prologue-no": {
      "description": "Okay, well good luck... You can always change your mind...",
      "directions": {
@@ -52,10 +51,17 @@
      we speak! Good luck, Adventurer!",
 
      "directions": {
-       "fight": "fight-goblins",
+       "go forward": "fight-goblins1",
        "go backward": "living-room",
      }
    },
+
+   "fight-goblins1": {
+     "description": "It seems that you have approached a horde of goblins. They are blocking your path and you must fight them to continue.", 
+     "directions": {
+       "fight": "fight-goblins", 
+     }
+   }, 
 
    "fight-goblins": {
      "description": "Good idea! The Goblins are numerous, but not very effective fighters. You are \
@@ -224,6 +230,9 @@ function changeroom(dir) {
         currentRoom = rooms[currentRoom].directions[dir];
          $("#game-text").append("<p>" + rooms[currentRoom].description + "<p>");
          changeLocation(currentRoom);
+  }
+  else {
+    $("#game-text").append("<p>" + "Uh oh, you cannot execute that command!" + "<p>"); 
   }
 }
 
